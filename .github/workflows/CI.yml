@@ -76,5 +76,6 @@ jobs:
       if: github.ref == 'refs/heads/master'
       uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages # The branch the action should deploy to.
         folder: doc  # The folder the action should deploy.
