@@ -1,0 +1,19 @@
+name = "mersenne-twister-fortran"
+license = "BSD-3-Clause"
+author = "Jacob Williams"
+maintainer = "https://github.com/jacobwilliams"
+copyright = "Copyright (c) 2022, Jacob Williams"
+description = "Mersenne Twister pseudorandom number generator"
+homepage = "https://github.com/jacobwilliams/mersenne-twister-fortran"
+keywords = ["random numbers"]
+
+[library]
+source-dir = "src"
+
+[install]
+library = true
+
+[build]
+auto-executables = false
+auto-examples = false
+auto-tests = true

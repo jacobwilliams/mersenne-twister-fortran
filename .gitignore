@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# misc
+/build
+/lib
+/bin
+.DS_Store
