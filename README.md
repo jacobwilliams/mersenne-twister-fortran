@@ -8,7 +8,7 @@
 
 ### Description
 
-Mersenne Twister pseudorandom number generator. Based on the soucecode from: http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/VERSIONS/FORTRAN/mt19937-64.f95
+Mersenne Twister pseudorandom number generator.
 
 ### License
 
@@ -34,5 +34,7 @@ mersenne-twister-fortran = { git="https://github.com/jacobwilliams/mersenne-twis
   The latest API documentation can be found [here](https://jacobwilliams.github.io/mersenne-twister-fortran/). This was generated from the source code using [FORD](https://github.com/Fortran-FOSS-Programmers/ford).
 
 ### References
-  * T. Nishimura, "Tables of 64-bit Mersenne Twisters" ACM Transactions on Modeling and Computer Simulation 10. (2000) 348--357.
-  * M. Matsumoto and T. Nishimura, "Mersenne Twister: a 623-dimensionally equidistributed uniform pseudorandom number generator" ACM Transactions on Modeling and Computer Simulation 8. (Jan. 1998) 3--30.
+  * T. Nishimura, "[Tables of 64-bit Mersenne Twisters](https://dl.acm.org/doi/10.1145/369534.369540)" ACM Transactions on Modeling and Computer Simulation 10. (2000) 348--357.
+  * M. Matsumoto and T. Nishimura, "[Mersenne Twister: a 623-dimensionally equidistributed uniform pseudorandom number generator](https://dl.acm.org/doi/10.1145/272991.272995)" ACM Transactions on Modeling and Computer Simulation 8. (Jan. 1998) 3--30.
+  * [Original soucecode](http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/VERSIONS/FORTRAN/mt19937-64.f95) from math.sci.hiroshima-u.ac.jp
+  * [pikaia](https://github.com/jacobwilliams/pikaia) -- this module was originally created for that library, but was split off into a separate package.
