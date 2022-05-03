@@ -1,76 +1,20 @@
 !*****************************************************************************************
 !>
-!  This is a Fortran translation of the 64-bit version of
-!  the Mersenne Twister pseudorandom number generator
+!  64-bit version of the Mersenne Twister pseudorandom number generator.
 !
-!   Before using, initialize the state by using
-!       ```call init_genrand64(seed)```
-!   or
-!       ```call init_by_array64(init_key)```
+!### History
 !
-!### History and Licenses
+!  * Contributors: Rémi Piatek, Takuji Nishimura, Makoto Matsumoto, Jacob Williams
+!    See LICENSE file for details.
 !
-!   Translated from C-program for MT19937-64 (2004/9/29 version)
-!   originally coded by Takuji Nishimura and Makoto Matsumoto
-!   http://www.math.sci.hiroshima-u.ac.jp/~m-mat/me%mt/emt64.html
+!### References
 !
-!-------------------------------------------------------------------------------
-!
-!   Fortran translation by Rémi Piatek
-!   The University of Copenhagen
-!   Department of Economics
-!   email: {first}.{last}@econ.ku.dk
-!
-!-------------------------------------------------------------------------------
-!   A C-program for MT19937-64 (2004/9/29 version).
-!   Coded by Takuji Nishimura and Makoto Matsumoto.
-!
-!   Copyright (C) 2004, Makoto Matsumoto and Takuji Nishimura,
-!   All rights reserved.
-!
-!   Redistribution and use in source and binary forms, with or without
-!   modification, are permitted provided that the following conditions
-!   are met:
-!
-!     1. Redistributions of source code must retain the above copyright
-!        notice, this list of conditions and the following disclaimer.
-!
-!     2. Redistributions in binary form must reproduce the above copyright
-!        notice, this list of conditions and the following disclaimer in the
-!        documentation and/or other materials provided with the distribution.
-!
-!     3. The names of its contributors may not be used to endorse or promote
-!        products derived from this software without specific prior written
-!        permission.
-!
-!   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-!   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-!   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-!   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
-!   OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-!   EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-!   PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-!   PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-!   LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-!   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-!   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-!
-!-------------------------------------------------------------------------------
-!  Modified by Jacob Williams, 10/18/2020 : made it a class.
-!  Some formatting changes. BSD License.
-!  Original source: http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/VERSIONS/FORTRAN/mt19937-64.f95
-!
-!-------------------------------------------------------------------------------
-!
-!### References:
-!  * T. Nishimura, "Tables of 64-bit Mersenne Twisters"
-!     ACM Transactions on Modeling and
-!     Computer Simulation 10. (2000) 348--357.
+!  * T. Nishimura, "Tables of 64-bit Mersenne Twisters" ACM Transactions on Modeling and
+!    Computer Simulation 10. (2000) 348--357.
 !  * M. Matsumoto and T. Nishimura,
-!     "Mersenne Twister: a 623-dimensionally equidistributed
-!       uniform pseudorandom number generator"
-!     ACM Transactions on Modeling and
-!     Computer Simulation 8. (Jan. 1998) 3--30.
+!    "Mersenne Twister: a 623-dimensionally equidistributed uniform pseudorandom number generator"
+!    ACM Transactions on Modeling and Computer Simulation 8. (Jan. 1998) 3--30.
+!  * Original source: http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/VERSIONS/FORTRAN/mt19937-64.f95
 
 module mt19937_64
 
@@ -97,6 +41,8 @@ module mt19937_64
 
   type,public :: mt19937
 
+    !! main class for random number generator
+
     private
 
     integer(i8) :: mt(nn) = 0_i8       !! array for the state vector
@@ -104,12 +50,14 @@ module mt19937_64
 
     contains
 
+    private
+
     generic,public :: initialize => init_genrand64_i4, &
                                     init_genrand64, &
-                                    init_by_array64
-    procedure, private :: init_genrand64
-    procedure, private :: init_by_array64
-    procedure, private :: init_genrand64_i4
+                                    init_by_array64 !! call first to initialize
+    procedure :: init_genrand64
+    procedure :: init_by_array64
+    procedure :: init_genrand64_i4
 
     procedure, public :: genrand64_real1
     procedure, public :: genrand64_real2
@@ -123,7 +71,7 @@ module mt19937_64
 
 !*****************************************************************************************
   subroutine init_genrand64_i4(me,seed)
-    !! Initializes me%mt(nn) with a seed
+    !! Initializes `me%mt(nn)` with a seed
     implicit none
 
     class(mt19937),intent(inout) :: me
@@ -136,7 +84,7 @@ module mt19937_64
 
 !*****************************************************************************************
   subroutine init_genrand64(me,seed)
-    !! Initializes me%mt(nn) with a seed
+    !! Initializes `me%mt(nn)` with a seed
     implicit none
 
     class(mt19937),intent(inout) :: me
