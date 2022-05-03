@@ -1,4 +1,4 @@
-project: slsqp
+project: mersenne-twister-fortran
 project_dir: ./src
 output_dir: ./doc
 media_dir: ./media
