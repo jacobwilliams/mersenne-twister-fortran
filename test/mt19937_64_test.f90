@@ -12,6 +12,8 @@ program mt19937_64_test
     type(mt19937) :: random
     real(wp) :: r
     integer :: i
+    integer, parameter :: n = 10**7
+    real(wp),dimension(n) :: x
 
     call random%initialize(42)
 
@@ -37,6 +39,32 @@ program mt19937_64_test
 
     r = random%genrand64_real3()
     write(output_unit, '(E30.16)') r
+
+    ! randomness tests:
+
+    do i = 1, n
+        x(i) = random%genrand64_real1()
+    end do
+    call print_results('genrand64_real1')
+
+    do i = 1, n
+        x(i) = random%genrand64_real2()
+    end do
+    call print_results('genrand64_real2')
+
+    do i = 1, n
+        x(i) = random%genrand64_real3()
+    end do
+    call print_results('genrand64_real3')
+
+    contains
+
+        subroutine print_results(method)
+            character(len=*),intent(in) :: method
+            write(*,'(/A)') method//': test randomness '
+            write(*,*) 'theory:', 0.5_wp,   1/12.0_wp
+            write(*,*) 'actual:', sum(x)/n, sum((x-0.5_wp)**2)/n
+        end subroutine print_results
 
 end program mt19937_64_test
 !*****************************************************************************************
