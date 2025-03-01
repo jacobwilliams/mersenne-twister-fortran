@@ -146,7 +146,7 @@ module mt19937_64
 !*****************************************************************************************
 
 !*****************************************************************************************
-  integer(r8) function genrand64_int64(me)
+  integer(i8) function genrand64_int64(me)
     !! Generates a random number on [-2^63, 2^63-1]-interval
 
     implicit none
